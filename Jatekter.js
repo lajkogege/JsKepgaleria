@@ -1,19 +1,20 @@
 import Kartya from "./Kartya.js";
 
-export default class Jatekter {
-    #lista = [];
-    #taraloELem
-    constructor(lista, taraloElem) {
-        this.#lista = lista;
-        this.#taraloELem = taraloElem;
-        this.#taraloELem.empty();
-        this.kartyaKiir();
+export default class JatekTer {
+    #lista=[]
+    #taroloElem
+    constructor(lista, taroloELEM) {
+        this.#lista=lista
+        this.#taroloElem=taroloELEM
+        this.#taroloElem.empty()
+        this.kiir()
     }
 
-    kartyaKiir() {
+    kiir(){
         this.#lista.forEach((elem) => {
             console.log(elem);
-            new Kartya(elem, this.#taraloELem);
-        });
+            new Kartya(elem, this.#taroloElem);
+          });
     }
+  
 }

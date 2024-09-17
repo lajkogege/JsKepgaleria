@@ -1,37 +1,35 @@
 export default class Kartya {
-    //adattagok
-    #obj = {};
-    #szuloElem;
-    //constructor
-    constructor(obj,szuloElem) {
-        this.#obj=obj;
-        this.#szuloElem = szuloElem;
-        
-        this.kartyaKiir();
-        this.kepElem=$(".kivalasztott:last");
-        console.log(this.#szuloElem)
-        this.esemenyKezelo();
-    }
-    kartyaKiir() {
-        this.#szuloElem.append(`
-         <div class="card kivalaszt col-lg-4 col-md-6">
-                <div class="card-body >
-                    <img src="${this.#obj.kep}" alt="" class="card-img-top">
-                </div>
-        </div>
-        `)
-        console.log(this.#obj.kep)
-    
-    }
+  //adattagok
+  #obj = {}; //privát adattag
+  #szuloElem;
+  //construktor -
+  constructor(obj, szuloElem) {
+    this.#obj = obj;
+    this.#szuloElem = szuloElem;
+    this.kiir();
+    this.kepElem = $(".kivalaszt:last");
+    console.log(this.kepElem)
+    this.esemenyKezelo();
+  }
+  //tagfüggvény
+  kiir() {
+    //egyetlen egy kép kíírása
+    this.#szuloElem.append(`
+            <div class="card kivalaszt col-lg-3 col-md-4 col-sm-6 ">
+                <div class="card-body">                 
+                    <img src="${this.#obj.url}" alt="${this.#obj.cim}" class="card-img-top">
+               </div>
+            </div>
+            `);
+  }
 
-    esemenyKezelo() {
-        this.kepElem.on("click", () => {
-            console.log(this)
-            //létrehozunk egy saját eseményt
-            const e = new CustomEvent("kivalaszt", { detail: this.#obj })
-            window.dispatchEvent(e)
-        }
-
-        )
-    }
+  //gombesemények kezelése
+  esemenyKezelo() {
+    this.kepElem.on("click", () => {
+      //console.log(this);
+      //létrehozunk egy saját eseményt
+      const e = new CustomEvent("kivalaszt", { detail: this.#obj });
+      window.dispatchEvent(e);
+    });
+  }
 }
